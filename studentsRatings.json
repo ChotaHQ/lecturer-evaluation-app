@@ -1,0 +1,62 @@
+[
+    {
+        "question1": 4,
+        "question2": 3,
+        "question3": 3,
+        "question4": 4,
+        "question5": 4,
+        "average": 3.60,
+        "totalScore": 18,
+        "courseCode": "CSC101",
+        "department": "Computer Science",
+        "faculty": "Physical Sciences"
+    },
+    {
+        "question1": 5,
+        "question2": 4,
+        "question3": 3,
+        "question4": 5,
+        "question5": 4,
+        "average": 4.20,
+        "totalScore": 21,
+        "courseCode": "CSC101",
+        "department": "Computer Science",
+        "faculty": "Physical Sciences"
+    },
+    {
+        "question1": 3,
+        "question2": 3,
+        "question3": 4,
+        "question4": 5,
+        "question5": 4,
+        "average": 3.80,
+        "totalScore": 19,
+        "courseCode": "CSC102",
+        "department": "Computer Science",
+        "faculty": "Physical Sciences"
+    },
+    {
+        "question1": 4,
+        "question2": 4,
+        "question3": 4,
+        "question4": 4,
+        "question5": 4,
+        "average": 4.00,
+        "totalScore": 20,
+        "courseCode": "CSC111",
+        "department": "Computer Science",
+        "faculty": "Physical Sciences"
+    },
+    {
+        "question1": 5,
+        "question2": 3,
+        "question3": 4,
+        "question4": 5,
+        "question5": 5,
+        "average": 4.40,
+        "totalScore": 22,
+        "courseCode": "CSC101",
+        "department": "Computer Science",
+        "faculty": "Physical Sciences"
+    }
+]
