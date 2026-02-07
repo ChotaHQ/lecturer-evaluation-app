@@ -1,7 +1,9 @@
+import LecturerEvaluationFormPage from "./pages/LecturerEvaluationFormPage"
+
 function App() {
   return (
-    <div className="bg-blue-500 text-white p-8 text-center">
-      <h1 className="text-4xl font-bold">Hello Tailwind</h1>
+    <div className="min-h-screen p-5">
+      <LecturerEvaluationFormPage />
     </div>
   )
 }
