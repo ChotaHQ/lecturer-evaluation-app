@@ -1,7 +1,2 @@
-export type Ratings = {
-    q1: number | '';
-    q2: number | '';
-    q3: number | '';
-    q4: number | '';
-    q5: number | '';
-}
+type QuestionKey = `q${1 | 2 | 3 | 4 | 5}`;
+export type Ratings = Record<QuestionKey, number | null>;
