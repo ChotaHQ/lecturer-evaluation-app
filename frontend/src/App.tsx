@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import LecturerEvaluationFormPage from "./pages/LecturerEvaluationFormPage"
 import LoginPage from "./pages/LoginPage";
+import VerifyRecordsPage from "./pages/VerifyRecordsPage";
 
 function App() {
   return (
@@ -14,6 +15,10 @@ function App() {
         <Route
           path="/login"
           element={<LoginPage />}
+        ></Route>
+        <Route
+          path="/verify"
+          element={<VerifyRecordsPage />}
         ></Route>
       </Routes>
     </div>
