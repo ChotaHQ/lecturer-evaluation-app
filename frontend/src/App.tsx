@@ -3,6 +3,7 @@ import LecturerEvaluationFormPage from "./pages/LecturerEvaluationFormPage"
 import LoginPage from "./pages/LoginPage";
 import VerifyRecordsPage from "./pages/VerifyRecordsPage";
 import CreatePasswordPage from "./pages/CreatePasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
         <Route
           path="/create-password"
           element={<CreatePasswordPage />}
+        ></Route>
+        <Route
+          path="/reset-password"
+          element={<ResetPasswordPage />}
         ></Route>
       </Routes>
     </div>
