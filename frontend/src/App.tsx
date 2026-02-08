@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import VerifyRecordsPageStudent from "./pages/VerifyRecordsPageStudent";
 import VerifyRecordsPageLecturer from "./pages/VerifyRecordsPageLecturer";
 import CreatePasswordPage from "./pages/CreatePasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           element={<VerifyRecordsPageLecturer />}
         ></Route>
         <Route path="/create-password" element={<CreatePasswordPage />}></Route>
+        <Route path="/reset-password" element={<ResetPasswordPage />}></Route>
       </Routes>
     </div>
   );
