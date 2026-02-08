@@ -1,4 +1,4 @@
-# Student Lecturer Evaluation System
+# Lecturer Evaluation App
 
 A fullstack web application for managing student evaluations of lecturers, built with React (Vite + TypeScript) on the frontend and Node.js (Express + TypeScript) on the backend.
 
