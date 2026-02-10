@@ -1,12 +1,38 @@
-import express, { Application, Request, Response } from 'express';
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 
-const app: Application = express();
-const port = 3000;
+import authRoutes from "./routes/auth";
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World from TypeScript!');
-});
+// LOAD ENVIRONMENT VARIABLES FROM .ENV FILE
+dotenv.config();
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// MIDDLEWARE
+app.use(express.json());
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  }),
+);
+
+// ROUTES
+app.use("/api/auth", authRoutes);
+
+// MONGODB CONNECTION
+mongoose
+  .connect(process.env.MONGODB_URL as string)
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log("Error connecting to database: ", err);
+  });
