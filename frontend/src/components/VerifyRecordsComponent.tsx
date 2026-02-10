@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const VerifyRecordsComponent = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Verification email sent to:', email);
+    console.log("Verification email sent to:", email);
     setIsSubmitted(true);
-    
+
     // Simulate redirect to create password page after verification
     // In real app, this would happen after email verification link is clicked
     // setTimeout(() => {
@@ -18,7 +18,7 @@ const VerifyRecordsComponent = () => {
   };
 
   const handleResend = () => {
-    console.log('Resending verification email to:', email);
+    console.log("Resending verification email to:", email);
     setIsSubmitted(true);
   };
 
@@ -26,9 +26,9 @@ const VerifyRecordsComponent = () => {
     <div className="w-full min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md bg-white rounded-lg shadow-sm">
         <div className="p-6 sm:p-8">
-          <div className="border-b-2 border-gray-300 pb-4 mb-6">        
+          <div className="border-b-2 border-gray-300 pb-4 mb-6">
             <h1 className="text-xl sm:text-2xl font-normal text-gray-800">
-                Verify Student Status
+              Verify Student Status
             </h1>
             <p className="text-xs sm:text-sm text-gray-600 mt-1">
               Enter your student email address to verify your account
@@ -40,7 +40,8 @@ const VerifyRecordsComponent = () => {
               <div className="space-y-5">
                 <div>
                   <label className="block text-sm text-gray-700 mb-2">
-                    <span className="text-red-500">*</span> Student Email Address:
+                    <span className="text-red-500">*</span> Student Email
+                    Address:
                   </label>
                   <input
                     type="email"
@@ -50,7 +51,7 @@ const VerifyRecordsComponent = () => {
                     placeholder="Enter your email"
                     className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                     required
-                  />                  
+                  />
                 </div>
 
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
@@ -77,15 +78,27 @@ const VerifyRecordsComponent = () => {
             <div className="space-y-5">
               <div className="bg-green-50 border border-green-200 rounded-lg p-4">
                 <div className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <svg
+                    className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
                   <div>
                     <h3 className="text-sm font-medium text-green-900 mb-1">
                       Verification Email Sent!
                     </h3>
                     <p className="text-xs text-green-800">
-                      We've sent a verification link to <span className="font-medium">{email}</span>
+                      We've sent a verification link to{" "}
+                      <span className="font-medium">{email}</span>
                     </p>
                   </div>
                 </div>
@@ -120,7 +133,7 @@ const VerifyRecordsComponent = () => {
 
           <div className="mt-6 pt-6 border-t border-gray-200 text-center">
             <p className="text-xs sm:text-sm text-gray-600">
-              Already verified?{' '}
+              Already verified?{" "}
               <Link
                 to="/login"
                 className="text-blue-600 hover:text-blue-700 hover:underline font-medium"
@@ -133,6 +146,6 @@ const VerifyRecordsComponent = () => {
       </div>
     </div>
   );
-}
+};
 
 export default VerifyRecordsComponent;
