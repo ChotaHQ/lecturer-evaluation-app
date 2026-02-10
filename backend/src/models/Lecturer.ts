@@ -27,41 +27,43 @@ const Lecturer = new mongoose.Schema(
       type: String,
       required: true,
     },
-    ratedCourses: [
-      {
-        courseCode: { type: String, required: true },
-        courseTitle: { type: String, required: true },
-        avgRating: {
-          type: Number,
-          min: 1,
-          max: 5,
-          required: true,
+    ratedCourses: {
+      type: [
+        {
+          courseCode: { type: String, required: true },
+          courseTitle: { type: String, required: true },
+          avgRating: {
+            type: Number,
+            min: 1,
+            max: 5,
+          },
         },
-      },
-    ],
+      ],
+      default: [],
+    },
     ovrRating: {
       type: Number,
-      required: true,
+      default: 0,
     },
     numOfRatingsForOvrRating: {
       type: Number,
-      required: true,
+      default: 0,
     },
     deptRating: {
       type: Number,
-      required: true,
+      default: 0,
     },
     numOfRatingsForDeptRating: {
       type: Number,
-      required: true,
+      default: 0,
     },
     facultyRating: {
       type: Number,
-      required: true,
+      default: 0,
     },
     numOfRatingsForFacultyRating: {
       type: Number,
-      required: true,
+      default: 0,
     },
   },
   { timestamps: true },
