@@ -75,7 +75,6 @@ const Student = new mongoose.Schema(
     password: {
       type: String,
       default: null,
-      select: false,
     },
   },
   { timestamps: true },
