@@ -6,6 +6,27 @@ const Lecturer = new mongoose.Schema(
       type: String,
       required: true,
     },
+    emailAddress: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    phoneNumber: {
+      type: String,
+      required: true,
+    },
+    faculty: {
+      type: String,
+      required: true,
+    },
+    department: {
+      type: String,
+      required: true,
+    },
     ratedCourses: [
       {
         courseCode: { type: String, required: true },
