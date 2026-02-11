@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const LoginComponent = () => {
+const LoginComponentLecturer = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -27,7 +27,7 @@ const LoginComponent = () => {
         <div className="p-6 sm:p-8">
           <div className="border-b-2 border-gray-300 pb-4 mb-6">
             <h1 className="text-xl sm:text-2xl font-normal text-gray-800">
-              Login
+              Lecturer Login
             </h1>
             <p className="text-xs sm:text-sm text-gray-600 mt-1">
               Please enter your credentials to access your account
@@ -112,7 +112,12 @@ const LoginComponent = () => {
               </div>
 
               <div className="flex justify-between text-xs sm:text-sm">
-                <span></span>
+                <Link
+                  to="/student-login"
+                  className="text-blue-600 hover:text-blue-700 hover:underline inline-block"
+                >
+                  Login as a Student
+                </Link>
                 <Link
                   to="/reset-password"
                   className="text-blue-600 hover:text-blue-700 hover:underline inline-block"
@@ -134,10 +139,10 @@ const LoginComponent = () => {
             <p className="text-xs sm:text-sm text-gray-600">
               First time using this app?{" "}
               <Link
-                to="/verify"
+                to="/verify-student"
                 className="text-blue-600 hover:text-blue-700 hover:underline font-medium"
               >
-                Verify your account
+                Verify your status as a lecturer here
               </Link>
             </p>
           </div>
@@ -147,4 +152,4 @@ const LoginComponent = () => {
   );
 };
 
-export default LoginComponent;
+export default LoginComponentLecturer;
