@@ -40,7 +40,7 @@ const VerifyRecordsComponentLecturer = () => {
               <div className="space-y-5">
                 <div>
                   <label className="block text-sm text-gray-700 mb-2">
-                    <span className="text-red-500">*</span> Student Email
+                    <span className="text-red-500">*</span> Lecturer Email
                     Address:
                   </label>
                   <input
