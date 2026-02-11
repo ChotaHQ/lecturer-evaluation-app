@@ -1,7 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import LecturerEvaluationFormPage from "./pages/LecturerEvaluationFormPage"
+import LecturerEvaluationFormPage from "./pages/LecturerEvaluationFormPage";
 import LoginPage from "./pages/LoginPage";
-import VerifyRecordsPage from "./pages/VerifyRecordsPage";
+import VerifyRecordsPageStudent from "./pages/VerifyRecordsPageStudent";
+import VerifyRecordsPageLecturer from "./pages/VerifyRecordsPageLecturer";
 
 function App() {
   return (
@@ -12,17 +13,18 @@ function App() {
           path="/evaluate"
           element={<LecturerEvaluationFormPage />}
         ></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
         <Route
-          path="/login"
-          element={<LoginPage />}
+          path="/verify-student"
+          element={<VerifyRecordsPageStudent />}
         ></Route>
         <Route
-          path="/verify"
-          element={<VerifyRecordsPage />}
+          path="/verify-lecturer"
+          element={<VerifyRecordsPageLecturer />}
         ></Route>
       </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

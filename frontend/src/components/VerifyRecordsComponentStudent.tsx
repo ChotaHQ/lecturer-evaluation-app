@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const VerifyRecordsComponent = () => {
+const VerifyRecordsComponentStudent = () => {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -148,4 +148,4 @@ const VerifyRecordsComponent = () => {
   );
 };
 
-export default VerifyRecordsComponent;
+export default VerifyRecordsComponentStudent;
