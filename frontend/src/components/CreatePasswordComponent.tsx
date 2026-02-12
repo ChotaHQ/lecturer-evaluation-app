@@ -276,7 +276,7 @@ const CreatePasswordComponent = ({
                     <p className="text-xs text-green-800">
                       You can now log in with your credentials. <br />
                       <Link
-                        to="/login"
+                        to={`/${role}-login`}
                         className="text-blue-600 hover:text-blue-700 hover:underline font-medium"
                       >
                         Login here
@@ -292,7 +292,7 @@ const CreatePasswordComponent = ({
             <p className="text-xs sm:text-sm text-gray-600">
               Already have an account?{" "}
               <Link
-                to="/login"
+                to={`/${role}-login`}
                 className="text-blue-600 hover:text-blue-700 hover:underline font-medium"
               >
                 Login here

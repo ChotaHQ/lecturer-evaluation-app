@@ -175,7 +175,7 @@ const VerifyRecordsComponentStudent = () => {
             <p className="text-xs sm:text-sm text-gray-600">
               Already verified?{" "}
               <Link
-                to="/login"
+                to="/student-login"
                 className="text-blue-600 hover:text-blue-700 hover:underline font-medium"
               >
                 Login here
