@@ -16,8 +16,8 @@ export const handleEmailVerification = async (
   console.log(message);
 
   const responseMessage = isPasswordReset
-    ? `${role.charAt(0).toUpperCase() + role.slice(1)} has been verified for password reset`
-    : `${role.charAt(0).toUpperCase() + role.slice(1)} has been verified and email sent`;
+    ? "Your account has been verified for password reset"
+    : "An email has been sent to your account for verification";
 
   return res.status(200).json({ message: responseMessage });
 };

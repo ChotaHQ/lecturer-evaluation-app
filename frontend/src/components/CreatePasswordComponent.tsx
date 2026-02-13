@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { apiFetch } from "../services/api";
 
 type CreatePasswordComponentProps = {
   userId: string;
@@ -42,17 +43,15 @@ const CreatePasswordComponent = ({
       setIsLoading(true);
 
       try {
-        const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/auth/create-password?role=${role}&userId=${userId}`,
+        const data = await apiFetch(
+          `/api/auth/create-password?role=${role}&userId=${userId}`,
           {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-            body: JSON.stringify({ password: formData.password }),
+            body: { password: formData.password },
           },
         );
 
-        if (res.ok) {
+        if (data) {
           setIsSubmitted(true);
         }
       } catch (err) {

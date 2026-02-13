@@ -27,8 +27,7 @@ app.use("/api/auth", authRoutes);
 
 // MONGODB CONNECTION
 mongoose
-  // .connect(process.env.MONGODB_URL as string)
-  .connect("mongodb://localhost:27017/lecturer-evaluation-app")
+  .connect(process.env.MONGODB_URL as string)
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server is running on http://localhost:${PORT}`);

@@ -22,8 +22,8 @@ export const sendCreatePwdEmail = async (
     (emailAPI as any).authentications.apiKey.apiKey = process.env.BREVO_API_KEY;
 
     let message = new SendSmtpEmail();
-    message.subject = "Create A Password For Your Account";
-    message.htmlContent = `<html><head></head><body style="font-size: 16px;"><p>Your email has been successfully verified!</p><p>You can now create a password for your account.</p><p>Click this link to create your password: <br></br> <a style="background-color: red; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;" href="${process.env.CLIENT_URL}/create-password?role=${role}&id=${userId}">Create Password</a></p><p>If you didn't request this, please ignore this email.</p></body></html>`;
+    message.subject = `${role.charAt(0).toUpperCase() + role.slice(1)} Account Verification`;
+    message.htmlContent = `<html><head></head><body style="font-size: 16px;"><p>Click the link below to verify your ${role} account.</p><p>You will be redirected to a page to create your password.</p><a style="background-color: red; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;" href="${process.env.CLIENT_URL}/create-password?role=${role}&id=${userId}">Verify your Account</a></p><p style="font-weight: bold;">Note: If you didn't request this, please ignore this email.</p></body></html>`;
     message.sender = {
       name: "ESUT Lecturers' Evaluation App",
       email: "azuboguko@gmail.com",
