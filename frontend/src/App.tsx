@@ -1,10 +1,12 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import LecturerEvaluationFormPage from "./pages/LecturerEvaluationFormPage";
-import LoginPage from "./pages/LoginPage";
 import VerifyRecordsPageStudent from "./pages/VerifyRecordsPageStudent";
 import VerifyRecordsPageLecturer from "./pages/VerifyRecordsPageLecturer";
 import CreatePasswordPage from "./pages/CreatePasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
+import LoginPageLecturer from "./pages/LoginPageLecturer";
+import LoginPageStudent from "./pages/LoginPageStudent";
+import LoginPageAdmin from "./pages/LoginPageAdmin";
 
 function App() {
   return (
@@ -15,7 +17,9 @@ function App() {
           path="/evaluate"
           element={<LecturerEvaluationFormPage />}
         ></Route>
-        <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/admin-login" element={<LoginPageAdmin />}></Route>
+        <Route path="/lecturer-login" element={<LoginPageLecturer />}></Route>
+        <Route path="/student-login" element={<LoginPageStudent />}></Route>
         <Route
           path="/verify-student"
           element={<VerifyRecordsPageStudent />}
