@@ -60,7 +60,7 @@ const LoginComponentAdmin = () => {
             <div className="space-y-5">
               {error && (
                 <div className="bg-red-100 p-4 rounded border border-red-200">
-                  <p className="text-sm text-red-500">{error}</p>
+                  <p className="text-sm text-red-500 font-medium">{error}</p>
                 </div>
               )}
 
