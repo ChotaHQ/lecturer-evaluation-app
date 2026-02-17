@@ -93,7 +93,7 @@ export const createPassword = async (req: Request, res: Response) => {
     type ValidRole = (typeof validRoles)[number];
 
     if (typeof role !== "string" || !validRoles.includes(role as ValidRole)) {
-      return res.status(400).json({ message: "Invalid role" });
+      return res.status(400).json({ message: "Invalid role!" });
     }
 
     const model = findUserType[role as ValidRole];
@@ -102,7 +102,7 @@ export const createPassword = async (req: Request, res: Response) => {
 
     if (!user) {
       return res.status(404).json({
-        message: `${role.charAt(0).toUpperCase() + role.slice(1)} not found`,
+        message: `This ${role} account does not exist!`,
       });
     }
 
@@ -135,7 +135,7 @@ export const login = async (req: Request, res: Response) => {
     type ValidRole = (typeof validRoles)[number];
 
     if (typeof role !== "string" || !validRoles.includes(role as ValidRole)) {
-      return res.status(400).json({ message: "Invalid role" });
+      return res.status(400).json({ message: "Invalid role!" });
     }
 
     const model = findUserType[role as ValidRole];
@@ -144,7 +144,7 @@ export const login = async (req: Request, res: Response) => {
 
     if (!user) {
       return res.status(404).json({
-        message: `${role.charAt(0).toUpperCase() + role.slice(1)} not found`,
+        message: `This ${role} account does not exist!`,
       });
     }
 
@@ -154,7 +154,7 @@ export const login = async (req: Request, res: Response) => {
     );
 
     if (!isPasswordValid) {
-      return res.status(401).json({ message: "Invalid password" });
+      return res.status(401).json({ message: "Invalid password!" });
     }
 
     const token = jwt.sign({ id: user._id, role }, JWT_SECRET, {

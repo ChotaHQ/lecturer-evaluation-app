@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { apiFetch } from "../services/api";
 
 const LoginComponentAdmin = () => {
   const [formData, setFormData] = useState({
@@ -22,30 +23,21 @@ const LoginComponentAdmin = () => {
     e.preventDefault();
 
     setIsLoading(true);
+    setError("");
 
     try {
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/auth/login?role=admin`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({
-            emailAddress: formData.email,
-            password: formData.password,
-          }),
-        },
-      );
+      const data = await apiFetch("/api/auth/login?role=admin", {
+        method: "POST",
+        body: { emailAddress: formData.email, password: formData.password },
+      });
 
-      const data = await res.json();
-
-      if (res.ok) {
+      if (data) {
         console.log("Over here: ", data);
-      } else {
-        setError(data.message || "Login failed");
       }
     } catch (err) {
-      console.log("Error: ", err);
+      if (err instanceof Error) {
+        setError(err.message);
+      }
     } finally {
       setIsLoading(false);
     }

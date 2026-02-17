@@ -36,7 +36,7 @@ export const apiFetch = async <T = any>(
     try {
       errorData = await res.json();
     } catch (err) {
-      console.log("Error: ", err);
+      console.log("Error in api function: ", err);
     }
 
     throw new Error(errorData?.message ?? `HTTP error! status: ${res.status}`);
