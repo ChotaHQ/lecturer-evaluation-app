@@ -3,7 +3,9 @@ import LecturerEvaluationFormPage from "./pages/LecturerEvaluationFormPage";
 import VerifyRecordsPageStudent from "./pages/VerifyRecordsPageStudent";
 import VerifyRecordsPageLecturer from "./pages/VerifyRecordsPageLecturer";
 import CreatePasswordPage from "./pages/CreatePasswordPage";
-import ResetPasswordPage from "./pages/ResetPasswordPage";
+import ResetPasswordPageStudent from "./pages/ResetPasswordPageStudent";
+import ResetPasswordPageLecturer from "./pages/ResetPasswordPageLecturer";
+import ResetPasswordPageAdmin from "./pages/ResetPasswordPageAdmin";
 import LoginPageLecturer from "./pages/LoginPageLecturer";
 import LoginPageStudent from "./pages/LoginPageStudent";
 import LoginPageAdmin from "./pages/LoginPageAdmin";
@@ -29,7 +31,18 @@ function App() {
           element={<VerifyRecordsPageLecturer />}
         ></Route>
         <Route path="/create-password" element={<CreatePasswordPage />}></Route>
-        <Route path="/reset-password" element={<ResetPasswordPage />}></Route>
+        <Route
+          path="/reset-password-student"
+          element={<ResetPasswordPageStudent />}
+        ></Route>
+        <Route
+          path="/reset-password-lecturer"
+          element={<ResetPasswordPageLecturer />}
+        ></Route>
+        <Route
+          path="/reset-password-admin"
+          element={<ResetPasswordPageAdmin />}
+        ></Route>
       </Routes>
     </div>
   );

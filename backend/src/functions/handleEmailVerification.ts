@@ -13,8 +13,6 @@ export const handleEmailVerification = async (
     ? await sendResetPwdEmail(email, id, role)
     : await sendCreatePwdEmail(email, id, role);
 
-  console.log(message);
-
   const responseMessage = isPasswordReset
     ? "Your account has been verified for password reset"
     : "An email has been sent to your account for verification";
