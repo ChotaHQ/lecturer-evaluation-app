@@ -20,7 +20,7 @@ export const verifyToken = (
   const token = req.cookies.token;
 
   if (!token) {
-    return res.status(401).json({ message: "No token provided" });
+    return res.status(401).json({ message: "Log in to view this page." });
   }
 
   try {
@@ -28,6 +28,6 @@ export const verifyToken = (
     req.user = decoded;
     next();
   } catch (err) {
-    res.status(401).json({ message: "Invalid token" });
+    res.status(401).json({ message: "Invalid token." });
   }
 };
