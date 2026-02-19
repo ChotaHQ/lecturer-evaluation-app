@@ -4,7 +4,7 @@ import { apiFetch } from "../services/api";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 const LoginComponentAdmin = () => {
-  const { setUser, setLoadingUser } = useAuthContext();
+  const { setUser } = useAuthContext();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -27,7 +27,6 @@ const LoginComponentAdmin = () => {
 
     setIsLoading(true);
     setError("");
-    setLoadingUser(true);
 
     try {
       const data = await apiFetch("/api/auth/login?role=admin", {

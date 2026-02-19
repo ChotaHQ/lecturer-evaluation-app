@@ -23,8 +23,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       const data = await apiFetch("/api/auth/checkAuth");
 
       if (data) {
-        console.log("Over here: ", data);
-        setLoadingUser(data.user);
+        setUser(data);
       }
     } catch (err) {
       console.error("Auth check failed:", err);

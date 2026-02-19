@@ -40,7 +40,7 @@ export const checkAuth = async (req: Request, res: Response) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res.json({ role, user });
+    res.json({ id: user._id, emailAddress: user.emailAddress, role });
   } catch (err) {
     console.log("Error!");
     res.status(500).json({ message: "Server error" });
