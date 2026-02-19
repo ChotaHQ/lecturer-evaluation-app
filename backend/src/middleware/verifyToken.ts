@@ -20,7 +20,7 @@ export const verifyToken = (
   const token = req.cookies.token;
 
   if (!token) {
-    return res.status(401).json({ message: "Log in to view this page." });
+    return res.status(401).json({ message: "Log in to view this page" });
   }
 
   try {
