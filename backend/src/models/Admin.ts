@@ -10,6 +10,10 @@ const Admin = new mongoose.Schema(
       type: String,
       required: true,
     },
+    adminID: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true },
 );

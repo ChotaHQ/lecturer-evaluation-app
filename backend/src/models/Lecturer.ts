@@ -65,6 +65,10 @@ const Lecturer = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    lecturerID: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true },
 );
