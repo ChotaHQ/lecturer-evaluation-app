@@ -1,5 +1,6 @@
 import { useState, useEffect, type ReactNode } from "react";
 import { AuthContext } from "./AuthContext";
+import { apiFetch } from "../../services/api";
 
 type AuthContextProviderProps = {
   children: ReactNode;
@@ -14,27 +15,16 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [loadingUser, setLoadingUser] = useState<boolean>(true);
 
   useEffect(() => {
-    console.log("Logged In user: ", user);
     checkAuth();
   }, []);
 
   const checkAuth = async () => {
     try {
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/auth/checkAuth`,
-        {
-          credentials: "include",
-        },
-      );
-      if (res.ok) {
-        const data = await res.json();
-        console.log("we got it: ", data);
+      const data = await apiFetch("/api/auth/checkAuth");
 
-        setUser({
-          id: data.user._id,
-          emailAddress: data.user.emailAddress,
-          role: data.role,
-        });
+      if (data) {
+        console.log("Over here: ", data);
+        setLoadingUser(data.user);
       }
     } catch (err) {
       console.error("Auth check failed:", err);
