@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { apiFetch } from "../services/api";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const LoginComponentAdmin = () => {
+  const { setUser, setLoadingUser } = useAuthContext();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -24,6 +27,7 @@ const LoginComponentAdmin = () => {
 
     setIsLoading(true);
     setError("");
+    setLoadingUser(true);
 
     try {
       const data = await apiFetch("/api/auth/login?role=admin", {
@@ -33,6 +37,7 @@ const LoginComponentAdmin = () => {
 
       if (data) {
         console.log("Over here: ", data);
+        setUser(data.user);
       }
     } catch (err) {
       if (err instanceof Error) {
