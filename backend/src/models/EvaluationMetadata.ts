@@ -18,7 +18,7 @@ const evaluationMetadataSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    lecturerId: {
+    lecturerID: {
       type: String,
       required: true,
     },
