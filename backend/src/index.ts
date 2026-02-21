@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/auth";
+import evaluateRoutes from "./routes/evaluate";
 
 // LOAD ENVIRONMENT VARIABLES FROM .ENV FILE
 dotenv.config();
@@ -24,6 +25,7 @@ app.use(
 
 // ROUTES
 app.use("/api/auth", authRoutes);
+app.use("/api/evaluate", evaluateRoutes);
 
 // MONGODB CONNECTION
 mongoose
