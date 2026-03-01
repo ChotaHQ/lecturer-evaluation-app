@@ -7,6 +7,11 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth";
 import evaluateRoutes from "./routes/evaluate";
 
+import { start as startOvrRatingWorker } from "./workers/ovrRatingWorker";
+import { start as startDeptRatingWorker } from "./workers/deptRatingWorker";
+import { start as startFacultyRatingWorker } from "./workers/facultyRatingWorker";
+import { start as startCourseRatingWorker } from "./workers/courseRatingWorker";
+
 // LOAD ENVIRONMENT VARIABLES FROM .ENV FILE
 dotenv.config();
 
@@ -30,6 +35,12 @@ app.use("/api/evaluate", evaluateRoutes);
 // MONGODB CONNECTION
 mongoose
   .connect(process.env.MONGODB_URL as string)
+  .then(() => {
+    startOvrRatingWorker();
+    startDeptRatingWorker();
+    startFacultyRatingWorker();
+    startCourseRatingWorker();
+  })
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server is running on http://localhost:${PORT}`);
