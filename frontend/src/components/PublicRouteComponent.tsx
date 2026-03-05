@@ -17,8 +17,16 @@ const PublicRouteComponent = ({ children }: PublicRouteComponentProps) => {
     );
   }
 
-  if (user) {
-    return <Navigate to="/evaluate" replace />;
+  if (user?.role === "student") {
+    return <Navigate to="/student/evaluate" replace />;
+  }
+
+  if (user?.role === "lecturer") {
+    return <Navigate to="/lecturer/dashboard" replace />;
+  }
+
+  if (user?.role === "admin") {
+    return <Navigate to="/doctor/records" replace />;
   }
 
   return <>{children}</>;

@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/auth";
 import evaluateRoutes from "./routes/evaluate";
+import lecturerRoutes from "./routes/lecturer";
 
 import { start as startOvrRatingWorker } from "./workers/ovrRatingWorker";
 import { start as startDeptRatingWorker } from "./workers/deptRatingWorker";
@@ -31,6 +32,7 @@ app.use(
 // ROUTES
 app.use("/api/auth", authRoutes);
 app.use("/api/evaluate", evaluateRoutes);
+app.use("/api/lecturer", lecturerRoutes);
 
 // MONGODB CONNECTION
 mongoose
