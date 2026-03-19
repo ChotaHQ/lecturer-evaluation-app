@@ -1,27 +1,7 @@
+import type { LecturerDetails } from "../types/LecturerDetails";
+
 type LecturerDashboardComponentProps = {
-  lecturerData: {
-    lecturerName: string;
-    emailAddress: string;
-    password: string;
-    phoneNumber: string;
-    faculty: string;
-    department: string;
-    ratedCourses: [
-      {
-        courseCode: string;
-        avgRating: number;
-        courseTitle: string;
-        numOfRatings: number;
-      },
-    ];
-    ovrRating: number;
-    numOfRatingsForOvrRating: number;
-    deptRating: number;
-    numOfRatingsForDeptRating: number;
-    facultyRating: number;
-    numOfRatingsForFacultyRating: number;
-    lecturerID: string;
-  };
+  lecturerData: LecturerDetails;
 };
 
 const LecturerDashboardComponent = ({
@@ -89,7 +69,7 @@ const LecturerDashboardComponent = ({
             </div>
           </div>
 
-          <div className="mt-5 bg-gray-100 rounded p-4  italic text-sm text-gray-600">
+          <div className="mt-5 bg-gray-100 rounded p-4 italic text-sm text-gray-600">
             * NOTE: All ratings are based on the feedback provided by students
             for the just concluded semester.
           </div>

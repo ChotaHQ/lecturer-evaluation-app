@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import LecturerEvaluationFormPage from "./pages/LecturerEvaluationFormPage";
 import LecturerDashboardPage from "./pages/LecturerDashboardPage";
+import AdminDashboardPage from "./pages/AdminDashboardPage";
 import VerifyRecordsPageStudent from "./pages/VerifyRecordsPageStudent";
 import VerifyRecordsPageLecturer from "./pages/VerifyRecordsPageLecturer";
 import CreatePasswordPage from "./pages/CreatePasswordPage";
@@ -33,6 +34,15 @@ function App() {
           element={
             <ProtectedRouteComponent>
               <LecturerDashboardPage />
+            </ProtectedRouteComponent>
+          }
+        ></Route>
+
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRouteComponent>
+              <AdminDashboardPage />
             </ProtectedRouteComponent>
           }
         ></Route>

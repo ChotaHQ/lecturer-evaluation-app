@@ -26,7 +26,8 @@ const PublicRouteComponent = ({ children }: PublicRouteComponentProps) => {
   }
 
   if (user?.role === "admin") {
-    return <Navigate to="/doctor/records" replace />;
+    console.log(user);
+    return <Navigate to="/admin/dashboard" replace />;
   }
 
   return <>{children}</>;
