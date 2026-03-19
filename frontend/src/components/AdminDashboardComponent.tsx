@@ -1,7 +1,6 @@
 import { useState } from "react";
 import LecturerNameSearchComponent from "./AdminDashboardComponentTabs/LecturerNameSearchComponent";
 import LecturerDepartmentSearchComponent from "./AdminDashboardComponentTabs/LecturerDepartmentSearchComponent";
-import LecturerCourseSearchComponent from "./AdminDashboardComponentTabs/LecturerCourseSearchComponent";
 
 type AdminDashboardComponentProps = {
   adminEmail?: string;
@@ -12,7 +11,6 @@ type TabId = "one" | "two" | "three";
 const TABS: { id: TabId; label: string }[] = [
   { id: "one", label: "Lecturer Name Search" },
   { id: "two", label: "Department Search" },
-  { id: "three", label: "Course Search" },
 ];
 
 const AdminDashboardComponent = ({
@@ -71,7 +69,6 @@ const AdminDashboardComponent = ({
         <div className="bg-white border border-stone-300 rounded-b-xl shadow-sm min-h-[100px]">
           {active === "one" && <LecturerNameSearchComponent />}
           {active === "two" && <LecturerDepartmentSearchComponent />}
-          {active === "three" && <LecturerCourseSearchComponent />}
         </div>
       </div>
     </div>
