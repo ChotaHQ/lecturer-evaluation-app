@@ -25,8 +25,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       if (data) {
         setUser(data);
       }
-    } catch (err) {
-      console.error("Auth check failed:", err);
+    } catch (_err) {
     } finally {
       setLoadingUser(false);
     }

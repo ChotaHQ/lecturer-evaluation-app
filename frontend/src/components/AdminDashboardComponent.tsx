@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { logout } from "../functions/logout";
+import { useAuthContext } from "../hooks/useAuthContext";
 import LecturerNameSearchComponent from "./AdminDashboardComponentTabs/LecturerNameSearchComponent";
 import LecturerDepartmentSearchComponent from "./AdminDashboardComponentTabs/LecturerDepartmentSearchComponent";
 
@@ -17,31 +19,41 @@ const AdminDashboardComponent = ({
   adminEmail,
 }: AdminDashboardComponentProps) => {
   const [active, setActiveTab] = useState<TabId>("one");
+  const { setUser } = useAuthContext();
 
   return (
     <div className="w-full min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
       <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-sm p-5">
-        <h1 className="text-xl">
-          Welcome to your dashboard 😊{" "}
-          <span className="text-sm px-2 py-1 ml-1 text-white bg-gray-400 rounded-lg">
-            {adminEmail}
-          </span>
-        </h1>
+        <div className="flex justify-between items-center">
+          <h1 className="text-xl">
+            Welcome to your dashboard 😊{" "}
+            <span className="text-sm px-2 py-1 ml-1 text-white bg-gray-400 rounded-lg">
+              {adminEmail}
+            </span>
+          </h1>
+
+          <button
+            className="bg-red-500 text-white px-3 py-2 rounded active:scale-95 transition-all"
+            onClick={() => logout(setUser)}
+          >
+            Log Out
+          </button>
+        </div>
 
         <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-4 min-h-[150px]">
           <div className="bg-gray-100 p-4 rounded flex flex-col justify-between">
             <h1 className="text-5xl">1.4k</h1>
-            <p>Total number of Lecturers</p>
+            <p>Total Lecturers</p>
           </div>
 
           <div className="bg-gray-100 p-4 rounded flex flex-col justify-between">
             <h1 className="text-5xl">13</h1>
-            <p>Total number of lecturers with ratings</p>
+            <p>Rated Lecturers</p>
           </div>
 
           <div className="bg-gray-100 p-4 rounded flex flex-col justify-between">
             <h1 className="text-5xl">1.1k</h1>
-            <p>Total number of lecturers without ratings</p>
+            <p>Unrated Lecturers</p>
           </div>
         </div>
 

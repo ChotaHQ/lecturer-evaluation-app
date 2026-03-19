@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { apiFetch } from "../services/api";
+import { useAuthContext } from "../hooks/useAuthContext";
 import type { Ratings } from "../types/Ratings";
 import type { Question } from "../types/Question";
 import type { LecturerEvaluationFormData } from "../types/LecturerEvaluationFormData";
 import { questions } from "../data/questions";
+import { logout } from "../functions/logout";
 
 type LecturerEvaluationFormComponentProps = {
   evaluationData: {
@@ -33,6 +35,7 @@ type LecturerEvaluationFormComponentProps = {
 const LecturerEvaluationForm = ({
   evaluationData,
 }: LecturerEvaluationFormComponentProps) => {
+  const { setUser } = useAuthContext();
   const [formData, setFormData] = useState<LecturerEvaluationFormData>({
     matricNum: `${evaluationData.matricNum}`,
     faculty: `${evaluationData.faculty}`,
@@ -110,14 +113,22 @@ const LecturerEvaluationForm = ({
     <div className="w-full min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
       <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-sm">
         <div className="p-4 sm:p-6 lg:p-8">
-          <div className="border-b-2 border-gray-300 pb-4 mb-6">
-            <h1 className="text-lg sm:text-xl lg:text-2xl font-normal text-gray-800">
-              Students' Lecturer Evaluation Form
-            </h1>
-            <p className="text-xs sm:text-sm text-gray-600 mt-1">
-              Please fill in the required fields and answer the following
-              questions honestly
-            </p>
+          <div className="border-b-2 border-gray-300 pb-4 mb-6 flex justify-between items-center">
+            <div>
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-normal text-gray-800">
+                Students' Lecturer Evaluation Form
+              </h1>
+              <p className="text-xs sm:text-sm text-gray-600 mt-1">
+                Please fill in the required fields and answer the following
+                questions honestly
+              </p>
+            </div>
+            <button
+              className="bg-red-500 text-white px-3 py-2 rounded active:scale-95 transition-all"
+              onClick={() => logout(setUser)}
+            >
+              Log Out
+            </button>
           </div>
 
           <form onSubmit={handleSubmit}>

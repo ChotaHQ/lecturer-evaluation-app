@@ -62,11 +62,9 @@ export const registerAdmins = async (req: Request, res: Response) => {
     return res.status(201).json({ message: "Admin registered successfully" });
   } catch (error) {
     console.error("Error registering admin:", error);
-    return res
-      .status(500)
-      .json({
-        message: "An error occured in registering the admin. Please try again",
-      });
+    return res.status(500).json({
+      message: "An error occured in registering the admin. Please try again",
+    });
   }
 };
 
@@ -216,10 +214,15 @@ export const login = async (req: Request, res: Response) => {
 };
 
 export const logout = (req: Request, res: Response) => {
-  res.clearCookie("token", {
-    httpOnly: true,
-    secure: isProduction,
-    sameSite: isProduction ? "none" : "strict",
-  });
-  return res.status(200).json({ message: "Logout successful" });
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: isProduction,
+      sameSite: isProduction ? "none" : "strict",
+    });
+    return res.status(200).json({ message: "Logout successful" });
+  } catch (error) {
+    console.error("Error logging out:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
 };

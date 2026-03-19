@@ -35,7 +35,6 @@ const LoginComponentStudent = () => {
       });
 
       if (data) {
-        console.log("Over here: ", data);
         setUser(data.user);
       }
     } catch (err) {
