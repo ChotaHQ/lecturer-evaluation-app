@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import LecturerEvaluationFormPage from "./pages/LecturerEvaluationFormPage"
+import LecturerEvaluationFormPage from "./pages/LecturerEvaluationFormPage";
 import LoginPage from "./pages/LoginPage";
 import VerifyRecordsPage from "./pages/VerifyRecordsPage";
 import CreatePasswordPage from "./pages/CreatePasswordPage";
@@ -13,13 +13,14 @@ function App() {
           path="/evaluate"
           element={<LecturerEvaluationFormPage />}
         ></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
         <Route
-          path="/login"
-          element={<LoginPage />}
+          path="/verify-student"
+          element={<VerifyRecordsPageStudent />}
         ></Route>
         <Route
-          path="/verify"
-          element={<VerifyRecordsPage />}
+          path="/verify-lecturer"
+          element={<VerifyRecordsPageLecturer />}
         ></Route>
         <Route
           path="/create-password"
@@ -27,7 +28,7 @@ function App() {
         ></Route>
       </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
