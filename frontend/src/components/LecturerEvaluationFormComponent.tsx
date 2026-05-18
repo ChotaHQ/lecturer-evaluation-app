@@ -5,22 +5,17 @@ import type { LecturerEvaluationFormData } from '../types/LecturerEvaluationForm
 import {questions} from '../data/questions';
 
 const LecturerEvaluationForm = () => {
-  const [formData, setFormData] = useState<LecturerEvaluationFormData>({
-    studentName: '',
-    matricNumber: '',
-    gender: '',
-    faculty: '',
-    department: '',
+  const [formData, setFormData] = useState<LecturerEvaluationFormData>({    
     courseCode: '',
     level: '',
     courseTitle: '',
     lecturerName: '',
     ratings: {
-      q1: '',
-      q2: '',
-      q3: '',
-      q4: '',
-      q5: ''
+      q1: null,
+      q2: null,
+      q3: null,
+      q4: null,
+      q5: null
     }
   });
 
@@ -64,89 +59,6 @@ const questionsData: Question[] = questions;
 
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6">
-              <div>
-                <label className="block text-xs sm:text-sm text-gray-700 mb-2">
-                  <span className="text-red-500">*</span> Name of Student:
-                </label>
-                <input
-                  type="text"
-                  name="studentName"
-                  value={formData.studentName}
-                  onChange={handleInputChange}
-                  placeholder="Student full name"
-                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs sm:text-sm text-gray-700 mb-2">
-                  <span className="text-red-500">*</span> Matric Number:
-                </label>
-                <input
-                  type="text"
-                  name="matricNumber"
-                  value={formData.matricNumber}
-                  onChange={handleInputChange}
-                  placeholder="Enter Matric Number"
-                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs sm:text-sm text-gray-700 mb-2">
-                  <span className="text-red-500">*</span> Gender:
-                </label>
-                <select
-                  name="gender"
-                  value={formData.gender}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white"
-                  required
-                >
-                  <option value="">Gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs sm:text-sm text-gray-700 mb-2">
-                  <span className="text-red-500">*</span> Faculty:
-                </label>
-                <select
-                  name="faculty"
-                  value={formData.faculty}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white"
-                  required
-                >
-                  <option value="">Faculty</option>
-                  <option value="engineering">Engineering</option>
-                  <option value="science">Science</option>
-                  <option value="arts">Arts</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs sm:text-sm text-gray-700 mb-2">
-                  <span className="text-red-500">*</span> Department:
-                </label>
-                <select
-                  name="department"
-                  value={formData.department}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white"
-                  required
-                >
-                  <option value="">Department</option>
-                  <option value="computer-science">Computer Science</option>
-                  <option value="mathematics">Mathematics</option>
-                  <option value="physics">Physics</option>
-                </select>
-              </div>
-
               <div>
                 <label className="block text-xs sm:text-sm text-gray-700 mb-2">
                   <span className="text-red-500">*</span> Course Code:
