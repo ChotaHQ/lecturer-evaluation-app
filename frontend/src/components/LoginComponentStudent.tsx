@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { apiFetch } from "../services/api";
 
 const LoginComponentStudent = () => {
   const [formData, setFormData] = useState({
@@ -7,6 +8,8 @@ const LoginComponentStudent = () => {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -16,9 +19,28 @@ const LoginComponentStudent = () => {
     }));
   };
 
-  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Login submitted:", formData);
+
+    setIsLoading(true);
+    setError("");
+
+    try {
+      const data = await apiFetch("/api/auth/login?role=student", {
+        method: "POST",
+        body: { emailAddress: formData.email, password: formData.password },
+      });
+
+      if (data) {
+        console.log("Over here: ", data);
+      }
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -36,6 +58,12 @@ const LoginComponentStudent = () => {
 
           <form onSubmit={handleSubmit}>
             <div className="space-y-5">
+              {error && (
+                <div className="bg-red-100 p-4 rounded border border-red-200">
+                  <p className="text-sm text-red-500 font-medium">{error}</p>
+                </div>
+              )}
+
               <div>
                 <label className="block text-sm text-gray-700 mb-2">
                   <span className="text-red-500">*</span> Email Address:
@@ -128,9 +156,10 @@ const LoginComponentStudent = () => {
 
               <button
                 type="submit"
-                className="w-full px-6 py-2.5 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors"
+                className="w-full px-6 py-2.5 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isLoading}
               >
-                Login
+                {isLoading ? "Logging in..." : "Login"}
               </button>
             </div>
           </form>
