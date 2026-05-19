@@ -28,8 +28,14 @@ function App() {
           path="/verify-lecturer"
           element={<VerifyRecordsPageLecturer />}
         ></Route>
-        <Route path="/create-password" element={<CreatePasswordPage />}></Route>
-        <Route path="/reset-password" element={<ResetPasswordPage />}></Route>
+        <Route
+          path="/create-password"
+          element={<CreatePasswordPage />}
+        ></Route>
+        <Route
+          path="/reset-password"
+          element={<ResetPasswordPage />}
+        ></Route>
       </Routes>
     </div>
   );

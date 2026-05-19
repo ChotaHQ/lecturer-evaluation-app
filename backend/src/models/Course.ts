@@ -1,16 +1,20 @@
 import mongoose from "mongoose";
 
-const Admin = new mongoose.Schema(
+const Course = new mongoose.Schema(
   {
-    emailAddress: {
+    courseCode: {
       type: String,
       required: true,
     },
-    password: {
+    courseTitle: {
       type: String,
       required: true,
     },
-    adminID: {
+    department: {
+      type: String,
+      required: true,
+    },
+    level: {
       type: String,
       required: true,
     },
@@ -18,4 +22,4 @@ const Admin = new mongoose.Schema(
   { timestamps: true },
 );
 
-export default mongoose.model("Admin", Admin);
+export default mongoose.model("Course", Course);
