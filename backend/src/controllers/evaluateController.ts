@@ -3,6 +3,10 @@ import Lecturer from "../models/Lecturer";
 import Student from "../models/Student";
 import Course from "../models/Course";
 import EvaluationMetadata from "../models/EvaluationMetadata";
+import ovrRatingQueue from "../queues/ovrRatingQueue";
+import deptRatingQueue from "../queues/deptRatingQueue";
+import facultyRatingQueue from "../queues/facultyRatingQueue";
+import courseRatingQueue from "../queues/courseRatingQueue";
 
 export const getEvaluationData = async (req: Request, res: Response) => {
   const { userId } = req.query;
@@ -54,22 +58,31 @@ export const getEvaluationData = async (req: Request, res: Response) => {
 export const postEvaluationData = async (req: Request, res: Response) => {
   const { formData } = req.body;
 
+  const {
+    matricNum,
+    faculty,
+    department,
+    courseCode,
+    lecturerID,
+    questionRatings,
+  } = formData;
+
   try {
+    const hasRated = await EvaluationMetadata.findOne({
+      matricNum,
+      lecturerID,
+      courseCode,
+    });
+
+    if (hasRated) {
+      return res.status(409).json({
+        message: "You have rated this lecturer before on this same course",
+      });
+    }
+
     const ratingSum = (
       Object.values(formData.questionRatings) as number[]
     ).reduce((sum: number, value: number) => sum + value, 0);
-
-    formData.questionRatingsSum = ratingSum;
-
-    const {
-      matricNum,
-      faculty,
-      department,
-      courseCode,
-      lecturerID,
-      questionRatings,
-      questionRatingsSum,
-    } = formData;
 
     const evaluationMetadata = new EvaluationMetadata({
       matricNum,
@@ -78,14 +91,38 @@ export const postEvaluationData = async (req: Request, res: Response) => {
       courseCode,
       lecturerID,
       questionRatings,
-      questionRatingsSum,
+      questionRatingsSum: ratingSum,
     });
 
     await evaluationMetadata.save();
 
-    return res
-      .status(201)
-      .json({ message: "Evaluation submitted successfully" });
+    res.status(201).json({ message: "Evaluation submitted successfully" });
+
+    const jobOptions = {
+      attempts: 3,
+      backoff: { type: "exponential" as const, delay: 1000 },
+      removeOnComplete: true,
+      removeOnFail: false,
+    };
+
+    await Promise.all([
+      ovrRatingQueue.add("calculate-ovr-rating", { lecturerID }, jobOptions),
+      deptRatingQueue.add(
+        "calculate-dept-rating",
+        { lecturerID, department },
+        jobOptions,
+      ),
+      facultyRatingQueue.add(
+        "calculate-faculty-rating",
+        { lecturerID, faculty },
+        jobOptions,
+      ),
+      courseRatingQueue.add(
+        "calculate-course-rating",
+        { lecturerID, courseCode },
+        jobOptions,
+      ),
+    ]).catch((err) => console.error("Failed to add jobs to queue:", err));
   } catch (error) {
     console.error("Error submitting evaluation:", error);
     return res.status(500).json({

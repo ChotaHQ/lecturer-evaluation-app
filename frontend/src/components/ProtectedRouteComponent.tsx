@@ -4,12 +4,10 @@ import { useAuthContext } from "./../hooks/useAuthContext";
 
 type ProtectedRouteComponentProps = {
   children: ReactNode;
-  requiredRole?: "admin" | "lecturer" | "student";
 };
 
 const ProtectedRouteComponent = ({
   children,
-  //   requiredRole,
 }: ProtectedRouteComponentProps) => {
   const { user, loadingUser } = useAuthContext();
 
@@ -24,13 +22,6 @@ const ProtectedRouteComponent = ({
   if (!user) {
     return <Navigate to="/student-login" replace />;
   }
-
-  // if (user?.role === "") {
-  //   return <Navigate to="/patient" replace />;
-  // }
-  // if (user?.isDoctor) {
-  //   return <Navigate to="/doctor/records" replace />;
-  // }
 
   return <>{children}</>;
 };
