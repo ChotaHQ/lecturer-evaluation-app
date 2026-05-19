@@ -37,6 +37,10 @@ const Lecturer = new mongoose.Schema(
             min: 1,
             max: 5,
           },
+          numOfRatings: {
+            type: Number,
+            default: 0,
+          },
         },
       ],
       default: [],
@@ -64,6 +68,10 @@ const Lecturer = new mongoose.Schema(
     numOfRatingsForFacultyRating: {
       type: Number,
       default: 0,
+    },
+    lecturerID: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true },
