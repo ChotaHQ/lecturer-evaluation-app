@@ -1,9 +1,10 @@
-import type { Ratings } from './Ratings';
+import type { Ratings } from "./Ratings";
 
 export type LecturerEvaluationFormData = {
+  matricNum: string;
+  faculty: string;
+  department: string;
   courseCode: string;
-  level: string;
-  courseTitle: string;
-  lecturerName: string;
-  ratings: Ratings;
-}
+  lecturerID: string;
+  questionRatings: Ratings;
+};

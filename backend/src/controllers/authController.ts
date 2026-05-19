@@ -62,7 +62,11 @@ export const registerAdmins = async (req: Request, res: Response) => {
     return res.status(201).json({ message: "Admin registered successfully" });
   } catch (error) {
     console.error("Error registering admin:", error);
-    return res.status(500).json({ message: "Internal server error" });
+    return res
+      .status(500)
+      .json({
+        message: "An error occured in registering the admin. Please try again",
+      });
   }
 };
 
