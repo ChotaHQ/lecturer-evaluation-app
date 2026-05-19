@@ -19,6 +19,34 @@ type BaseUser = {
 
 type UserModel = Model<BaseUser>;
 
+export const checkAuth = async (req: Request, res: Response) => {
+  try {
+    let user = null;
+    let role = null;
+
+    if ((user = await Admin.findById(req.user.id).select("-password"))) {
+      role = "admin";
+    } else if (
+      (user = await Student.findById(req.user.id).select("-password"))
+    ) {
+      role = "student";
+    } else if (
+      (user = await Lecturer.findById(req.user.id).select("-password"))
+    ) {
+      role = "lecturer";
+    }
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({ id: user._id, emailAddress: user.emailAddress, role });
+  } catch (err) {
+    console.log("Error!");
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 export const registerAdmins = async (req: Request, res: Response) => {
   const { emailAddress, password } = req.body;
   try {

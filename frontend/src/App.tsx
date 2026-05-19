@@ -9,39 +9,103 @@ import ResetPasswordPageAdmin from "./pages/ResetPasswordPageAdmin";
 import LoginPageLecturer from "./pages/LoginPageLecturer";
 import LoginPageStudent from "./pages/LoginPageStudent";
 import LoginPageAdmin from "./pages/LoginPageAdmin";
+import PublicRouteComponent from "./components/PublicRouteComponent";
+import ProtectedRouteComponent from "./components/ProtectedRouteComponent";
 
 function App() {
   return (
     <div className="min-h-screen p-5">
       <Routes>
         <Route path="/" element={<Navigate to="/evaluate" />} />
+
         <Route
           path="/evaluate"
-          element={<LecturerEvaluationFormPage />}
+          element={
+            <ProtectedRouteComponent>
+              <LecturerEvaluationFormPage />
+            </ProtectedRouteComponent>
+          }
         ></Route>
-        <Route path="/admin-login" element={<LoginPageAdmin />}></Route>
-        <Route path="/lecturer-login" element={<LoginPageLecturer />}></Route>
-        <Route path="/student-login" element={<LoginPageStudent />}></Route>
+
+        <Route
+          path="/admin-login"
+          element={
+            <PublicRouteComponent>
+              <LoginPageAdmin />
+            </PublicRouteComponent>
+          }
+        ></Route>
+
+        <Route
+          path="/lecturer-login"
+          element={
+            <PublicRouteComponent>
+              <LoginPageLecturer />
+            </PublicRouteComponent>
+          }
+        ></Route>
+
+        <Route
+          path="/student-login"
+          element={
+            <PublicRouteComponent>
+              <LoginPageStudent />
+            </PublicRouteComponent>
+          }
+        ></Route>
+
         <Route
           path="/verify-student"
-          element={<VerifyRecordsPageStudent />}
+          element={
+            <PublicRouteComponent>
+              <VerifyRecordsPageStudent />
+            </PublicRouteComponent>
+          }
         ></Route>
+
         <Route
           path="/verify-lecturer"
-          element={<VerifyRecordsPageLecturer />}
+          element={
+            <PublicRouteComponent>
+              <VerifyRecordsPageLecturer />
+            </PublicRouteComponent>
+          }
         ></Route>
-        <Route path="/create-password" element={<CreatePasswordPage />}></Route>
+
+        <Route
+          path="/create-password"
+          element={
+            <PublicRouteComponent>
+              <CreatePasswordPage />
+            </PublicRouteComponent>
+          }
+        ></Route>
+
         <Route
           path="/reset-password-student"
-          element={<ResetPasswordPageStudent />}
+          element={
+            <PublicRouteComponent>
+              <ResetPasswordPageStudent />
+            </PublicRouteComponent>
+          }
         ></Route>
+
         <Route
           path="/reset-password-lecturer"
-          element={<ResetPasswordPageLecturer />}
+          element={
+            <PublicRouteComponent>
+              <ResetPasswordPageLecturer />
+            </PublicRouteComponent>
+          }
         ></Route>
+
         <Route
           path="/reset-password-admin"
-          element={<ResetPasswordPageAdmin />}
+          element={
+            <PublicRouteComponent>
+              <ResetPasswordPageAdmin />
+            </PublicRouteComponent>
+          }
         ></Route>
       </Routes>
     </div>

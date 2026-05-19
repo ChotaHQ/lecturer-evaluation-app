@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { apiFetch } from "../services/api";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const LoginComponentStudent = () => {
+  const { setUser } = useAuthContext();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -33,6 +36,7 @@ const LoginComponentStudent = () => {
 
       if (data) {
         console.log("Over here: ", data);
+        setUser(data.user);
       }
     } catch (err) {
       if (err instanceof Error) {
