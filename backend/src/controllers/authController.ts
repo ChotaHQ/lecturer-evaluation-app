@@ -44,11 +44,12 @@ export const verify = async (req: Request, res: Response) => {
 
   try {
     const findUserType: Record<ValidRole, UserModel> = {
+      admin: Admin,
       lecturer: Lecturer,
       student: Student,
     } as const;
 
-    const validRoles = ["lecturer", "student"] as const;
+    const validRoles = ["lecturer", "student", "admin"] as const;
     type ValidRole = (typeof validRoles)[number];
 
     if (typeof role !== "string" || !validRoles.includes(role as ValidRole)) {

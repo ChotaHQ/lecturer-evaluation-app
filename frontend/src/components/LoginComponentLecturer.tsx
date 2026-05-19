@@ -147,7 +147,7 @@ const LoginComponentLecturer = () => {
                   Login as a Student
                 </Link>
                 <Link
-                  to="/reset-password"
+                  to="/reset-password-lecturer"
                   className="text-blue-600 hover:text-blue-700 hover:underline inline-block"
                 >
                   Forgot Password?

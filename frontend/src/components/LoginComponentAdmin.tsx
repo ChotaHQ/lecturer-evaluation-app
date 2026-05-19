@@ -142,7 +142,7 @@ const LoginComponentAdmin = () => {
               <div className="flex justify-between text-xs sm:text-sm">
                 <span></span>
                 <Link
-                  to="/reset-password"
+                  to="/reset-password-admin"
                   className="text-blue-600 hover:text-blue-700 hover:underline inline-block"
                 >
                   Forgot Password?

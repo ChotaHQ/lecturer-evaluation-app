@@ -5,6 +5,7 @@ const Admin = new mongoose.Schema(
     emailAddress: {
       type: String,
       required: true,
+      lowercase: true,
     },
     password: {
       type: String,
