@@ -2,24 +2,58 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const VerifyRecordsComponentStudent = () => {
-  const [email, setEmail] = useState("");
+  const [emailAddress, setEmailAddress] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Verification email sent to:", email);
-    setIsSubmitted(true);
 
-    // Simulate redirect to create password page after verification
-    // In real app, this would happen after email verification link is clicked
-    // setTimeout(() => {
-    //   window.location.href = '/create-password';
-    // }, 3000);
+    setIsLoading(true);
+
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/auth/verify?role=student&forgotPassword=false`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ emailAddress }),
+        },
+      );
+
+      if (res.ok) {
+        setIsSubmitted(true);
+      }
+    } catch (err) {
+      console.log("Error: ", err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleResend = () => {
-    console.log("Resending verification email to:", email);
-    setIsSubmitted(true);
+  const handleResend = async () => {
+    setIsLoading(true);
+    setIsSubmitted(false);
+
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/auth/verify?role=student&forgotPassword=false`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ emailAddress }),
+        },
+      );
+      if (res.ok) {
+        setIsSubmitted(true);
+      }
+    } catch (err) {
+      console.log("Error: ", err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -39,15 +73,18 @@ const VerifyRecordsComponentStudent = () => {
             <form onSubmit={handleSubmit}>
               <div className="space-y-5">
                 <div>
-                  <label className="block text-sm text-gray-700 mb-2">
+                  <label
+                    htmlFor="emailAddress"
+                    className="block text-sm text-gray-700 mb-2"
+                  >
                     <span className="text-red-500">*</span> Student Email
                     Address:
                   </label>
                   <input
                     type="email"
-                    name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    name="emailAddress"
+                    value={emailAddress}
+                    onChange={(e) => setEmailAddress(e.target.value)}
                     placeholder="Enter your email"
                     className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                     required
@@ -68,9 +105,12 @@ const VerifyRecordsComponentStudent = () => {
 
                 <button
                   type="submit"
-                  className="w-full px-6 py-2.5 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors"
+                  className="w-full px-6 py-2.5 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={isLoading}
                 >
-                  Send Verification Email
+                  {isLoading
+                    ? "Sending Verification Email..."
+                    : "Send Verification Email"}
                 </button>
               </div>
             </form>
@@ -98,7 +138,7 @@ const VerifyRecordsComponentStudent = () => {
                     </h3>
                     <p className="text-xs text-green-800">
                       We've sent a verification link to{" "}
-                      <span className="font-medium">{email}</span>
+                      <span className="font-medium">{emailAddress}</span>
                     </p>
                   </div>
                 </div>

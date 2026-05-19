@@ -1,7 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import LecturerEvaluationFormPage from "./pages/LecturerEvaluationFormPage";
 import LoginPage from "./pages/LoginPage";
-import VerifyRecordsPage from "./pages/VerifyRecordsPage";
+import VerifyRecordsPageStudent from "./pages/VerifyRecordsPageStudent";
+import VerifyRecordsPageLecturer from "./pages/VerifyRecordsPageLecturer";
 import CreatePasswordPage from "./pages/CreatePasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 
