@@ -76,6 +76,10 @@ const Student = new mongoose.Schema(
       type: String,
       default: null,
     },
+    studentID: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true },
 );

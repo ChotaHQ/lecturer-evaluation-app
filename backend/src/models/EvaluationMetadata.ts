@@ -14,11 +14,11 @@ const evaluationMetadataSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    lecturerName: {
+    courseCode: {
       type: String,
       required: true,
     },
-    lecturerId: {
+    lecturerID: {
       type: String,
       required: true,
     },
@@ -38,7 +38,7 @@ const evaluationMetadataSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default mongoose.model("EvaluationMetadata", evaluationMetadataSchema);
