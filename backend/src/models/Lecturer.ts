@@ -37,6 +37,10 @@ const Lecturer = new mongoose.Schema(
             min: 1,
             max: 5,
           },
+          numOfRatings: {
+            type: Number,
+            default: 0,
+          },
         },
       ],
       default: [],
