@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { apiFetch } from "../services/api";
 
 const VerifyRecordsComponentLecturer = () => {
   const [emailAddress, setEmailAddress] = useState("");
@@ -12,17 +13,15 @@ const VerifyRecordsComponentLecturer = () => {
     setIsLoading(true);
 
     try {
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/auth/verify?role=lecturer&forgotPassword=false`,
+      const data = await apiFetch(
+        "/api/auth/verify?role=lecturer&forgotPassword=false",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({ emailAddress }),
+          body: { emailAddress },
         },
       );
 
-      if (res.ok) {
+      if (data) {
         setIsSubmitted(true);
       }
     } catch (err) {
@@ -37,16 +36,15 @@ const VerifyRecordsComponentLecturer = () => {
     setIsSubmitted(false);
 
     try {
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/auth/verify?role=lecturer&forgotPassword=false`,
+      const data = await apiFetch(
+        "/api/auth/verify?role=lecturer&forgotPassword=false",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({ emailAddress }),
+          body: { emailAddress },
         },
       );
-      if (res.ok) {
+
+      if (data) {
         setIsSubmitted(true);
       }
     } catch (err) {
@@ -172,7 +170,7 @@ const VerifyRecordsComponentLecturer = () => {
             <p className="text-xs sm:text-sm text-gray-600">
               Already verified?{" "}
               <Link
-                to="/login"
+                to="/lecturer-login"
                 className="text-blue-600 hover:text-blue-700 hover:underline font-medium"
               >
                 Login here
